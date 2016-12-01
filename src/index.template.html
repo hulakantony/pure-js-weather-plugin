@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{%=o.htmlWebpackPlugin.options.title || 'JS GURU'%}</title>
+    <meta name="description" content="Application" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1.0">
+    {% if (o.htmlWebpackPlugin.files.favicon) { %}
+    <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
+    {% } %}
+
+    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
+    <link type="text/css" href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+    {% } %}
+</head>
+<body>
+    Welcome to build version!
+    <noscript>
+        <div style="text-align: center; font-size:26px;">
+            Seems your browser doesn't support javascript!
+        </div>
+    </noscript>
+
+    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <script type="text/javascript" src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry%}"></script>
+    {% } %}
+</body>
+</html>

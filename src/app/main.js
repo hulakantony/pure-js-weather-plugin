@@ -14,7 +14,8 @@
   }
 })( this, function() {
 	'use strict'
-	var elem;
+	var set = new Set()
+	let elem;
 	const widgetHtml = 
 	`<div class="weather-widget-wrap">
       <div class="weather-date-place-wrap">
@@ -289,12 +290,17 @@
 		elem.innerHTML = '';
 	}
 	return {
-		init: function(_element) {
+		init(_element) {
 			if (!_element) {
 	    		alert('Вы не выбрали элемент в который вставляете виджет');
 	    		return;
-	   		}	   		
-			elem = _element;			   
+	   		}
+
+	   		const sym = Symbol.for(_element);
+	   		if(Symbol.keyFor(sym)){
+	   			elem = _element;
+	   		}
+			//console.log(elem)			   
 			execute();
 			setInterval(() => {
 	    		run();
